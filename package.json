@@ -1,0 +1,24 @@
+{
+  "name": "application-hellhelp",
+  "version": "1.0.0",
+  "description": "hell-help",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qus1225/application-hellhelp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qus1225/application-hellhelp/issues"
+  },
+  "homepage": "https://github.com/qus1225/application-hellhelp#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0"
+  }
+}
