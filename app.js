@@ -2,6 +2,10 @@ var express = require('express');
 
 var app =  express();
 
+var mysql = require('mysql');
+var dbconfig = require('./config/database');
+var connection = mysql.createConnection(dbconfig);
+
 // Set Static Middleware
 app.use(express.static(__dirname + '/public'));
 
@@ -28,6 +32,13 @@ app.set('view engine', 'hbs');
 app
   .get('/', function (req, res) {
     res.render('home');
+  })
+  .get('/test_data', function (req, res) {
+    connection.query('SELECT * from Persons', function(err, rows, fields) {
+      if (err) throw err;
+      console.log('The solution is: ', rows);
+      res.send(rows);
+    });
   })
 ;
 
