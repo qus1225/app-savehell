@@ -2,6 +2,8 @@ var express = require('express');
 
 var app =  express();
 
+var credentials = require('./credentials');
+
 // Set Static Middleware
 app.use(express.static(__dirname + '/public'));
 

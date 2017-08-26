@@ -10,6 +10,10 @@ var Hero = db.define('Hero', {
     primaryKey : true,
     autoIncrement: true
   },
+  provider: {
+    type : Sequelize.STRING(45),
+    allowNull : false
+  },
   nickName : {
     type : Sequelize.STRING(45),
     allowNull : false
