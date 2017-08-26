@@ -30,9 +30,13 @@ var Hero = db.define('Hero', {
     type : Sequelize.STRING(45),
     allowNull : true
   },
-  location : {
-    type : Sequelize.INTEGER(11),
-    allowNull : true
+  locationLat : {
+    type : Sequelize.DOUBLE,
+    allowNull : true,
+  },
+  locationLon : {
+    type : Sequelize.DOUBLE,
+    allowNull : true,
   },
   exp : {
     type : Sequelize.INTEGER(20),

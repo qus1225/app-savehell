@@ -47,7 +47,7 @@ router
     res.render('home');
   })
   .get('/resister-hero', function(req, res) {
-    res.render('resister-hero', { heroInfo: req.session.passport.user});
+    res.render('resister-hero', { heroInfo: req.session.passport.user });
   })
   .post('/resister-hero', function(req, res) {
     console.log('req.body: '+JSON.stringify(req.body));
@@ -55,8 +55,8 @@ router
       res.redirect('/map');
     });
   })
-  .get('/map', function(req, res) {
-    res.render('map');
+  .get('/map', ensureAuthenticated, function(req, res) {
+    res.render('map', { heroInfo: req.session.passport.user });
   })
 ;
 

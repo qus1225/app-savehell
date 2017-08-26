@@ -27,11 +27,11 @@ var Monster = db.define('Monster', {
     allowNull : false
   },
   locationLat : {
-    type : Sequelize.INTEGER(11),
+    type : Sequelize.DOUBLE,
     allowNull : false,
   },
   locationLon : {
-    type : Sequelize.INTEGER(11),
+    type : Sequelize.DOUBLE,
     allowNull : false,
   },
   image : {

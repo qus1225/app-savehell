@@ -10,9 +10,17 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="location" class="col-sm-2 control-label">활동지역</label>
+      <label for="locationLat" class="col-sm-2 control-label">활동지역(위도)</label>
       <div class="col-sm-4">
-        <input type="text" class="form-control" id="location" name="location">
+        <input type="number" step="any" class="form-control" id="locationLat" name="locationLat">
+        <span>예) 37.508134</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="locationLon" class="col-sm-2 control-label">활동지역(경도)</label>
+      <div class="col-sm-4">
+        <input type="number" step="any" class="form-control" id="locationLon" name="locationLon">
+        <span>예) 127.045097</span>
       </div>
     </div>
     <input type="submit" value="영웅 등록">
