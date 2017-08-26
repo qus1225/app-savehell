@@ -23,6 +23,7 @@
     "express-session": "^1.15.5",
     "mysql2": "^1.4.1",
     "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "sequelize": "^4.7.5"
   }
 }

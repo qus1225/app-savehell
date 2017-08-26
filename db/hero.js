@@ -10,9 +10,17 @@ var Hero = db.define('Hero', {
     primaryKey : true,
     autoIncrement: true
   },
+  provider_user_id : {
+    type : Sequelize.STRING(45),
+    allowNull : true
+  },
   provider: {
     type : Sequelize.STRING(45),
     allowNull : false
+  },
+  email: {
+    type : Sequelize.STRING(45),
+    allowNull : true
   },
   nickName : {
     type : Sequelize.STRING(45),
@@ -20,11 +28,11 @@ var Hero = db.define('Hero', {
   },
   skill : {
     type : Sequelize.STRING(45),
-    allowNull : false
+    allowNull : true
   },
   location : {
     type : Sequelize.INTEGER(11),
-    allowNull : false
+    allowNull : true
   },
   exp : {
     type : Sequelize.INTEGER(20),

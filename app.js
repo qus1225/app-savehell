@@ -6,6 +6,24 @@ var route = require('./route.js');
 
 var credentials = require('./credentials');
 
+var passport = require('passport');
+
+var session = require('express-session');
+
+var db = require('./config/db');
+
+var hero = require('./db/hero');
+var battleField = require('./db/battlefield');
+var monster = require('./db/monster');
+var victory = require('./db/victory');
+
+hero.sync();
+battleField.sync();
+monster.sync();
+victory.sync();
+
+// db.sync();
+
 // Set Static Middleware
 app.use(express.static(__dirname + '/public'));
 
@@ -27,6 +45,11 @@ var handlebars = require('express-handlebars')
   });
 app.engine('hbs', handlebars.engine);
 app.set('view engine', 'hbs');
+
+app.use(session({ secret: credentials.SESSION_SECRET }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Routes
 app.use('/', route);
