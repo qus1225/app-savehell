@@ -1,13 +1,72 @@
 <h1>헬조선 지도</h1>
 
 <div id="map" style="width:100%;height:400px;"></div>
+<!--TODO 같은지역에 출몰하는 괴물도 등록할 수 있어야함-->
+<!-- Modal -->
+<div class="modal fade" id="addMonsterModal" tabindex="-1" role="dialog" aria-labelledby="addMonsterModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addMonsterModalLabel">괴물을 등록합니다.</h4>
+      </div>
+      <div class="modal-body">
+        <form action="/register-monster" method="post">
+          <input type="hidden" class="form-control" name="makerId" value={{heroInfo.id}}>
+          <input type="hidden" class="form-control" name="species" value='일반'>
+          <input type="hidden" class="form-control" name="locationLat" id="locationLat">
+          <input type="hidden" class="form-control" name="locationLon" id="locationLon">
+          <!--<input type="hidden" name="provider_user_id" value= {{heroInfo.provider_user_id}}>-->
+          <div class="form-group">
+            <label for="name" class="col-sm-4 control-label">괴물 이름</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" id="name" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="desc" class="col-sm-4 control-label">괴물 설명</label>
+            <div class="col-sm-6">
+              <textarea class="form-control" id="desc" name="desc"></textarea>
+            </div>
+          </div>
+          <input type="submit" value="괴물 등록">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=qVDZv9oModQgNc8sLu6Y&callback=CALLBACK_FUNCTION"></script>
 <script>
   var mapOptions = {
     center: new naver.maps.LatLng('{{heroInfo.locationLat}}', '{{heroInfo.locationLon}}'),
-    zoom: 10
+    zoom: 10,
+    scrollWheel: false,
+    zoomControl: true
   };
 
   var map = new naver.maps.Map('map', mapOptions);
+
+  var markerList = [];
+
+  naver.maps.Event.addListener(map, 'click', function(e) {
+    var marker = new naver.maps.Marker({
+      position: e.coord,
+      map: map
+    });
+
+    var lat = e.coord._lat;
+    var lon = e.coord._lng;
+    $('#locationLat').val(lat);
+    $('#locationLon').val(lon);
+    $('#addMonsterModal').modal();
+
+
+//    markerList.push(marker);
+//    alert(JSON.stringify(e));
+//    alert(lat+','+lon);
+  });
 </script>

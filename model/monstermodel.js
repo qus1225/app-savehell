@@ -14,6 +14,13 @@ module.exports =(function () {
           success(results);
         }, error);
       }
+    },
+
+    insertMonster: function (data, success) {
+      var list = [data];
+      monster.bulkCreate(list, {individualHooks: true}).then(function (results) {
+        success(results);
+      });
     }
   };
 

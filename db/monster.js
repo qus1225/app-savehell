@@ -16,7 +16,7 @@ var Monster = db.define('Monster', {
   },
   species : {
     type : Sequelize.STRING(45),
-    allowNull : false
+    allowNull : true
   },
   name : {
     type : Sequelize.STRING(45),

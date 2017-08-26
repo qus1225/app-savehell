@@ -46,10 +46,10 @@ router
   .get('/', function (req, res) {
     res.render('home');
   })
-  .get('/resister-hero', function(req, res) {
-    res.render('resister-hero', { heroInfo: req.session.passport.user });
+  .get('/register-hero', function(req, res) {
+    res.render('register-hero', { heroInfo: req.session.passport.user });
   })
-  .post('/resister-hero', function(req, res) {
+  .post('/register-hero', function(req, res) {
     console.log('req.body: '+JSON.stringify(req.body));
     db.heroModel.updateHero(req.body, { provider_user_id: req.body.provider_user_id }, function () {
       res.redirect('/map');
@@ -57,6 +57,12 @@ router
   })
   .get('/map', ensureAuthenticated, function(req, res) {
     res.render('map', { heroInfo: req.session.passport.user });
+  })
+  .post('/register-monster', function(req, res) {
+    console.log('req.body: '+JSON.stringify(req.body));
+    db.monsterModel.insertMonster(req.body, function () {
+      res.redirect('/map');
+    });
   })
 ;
 
@@ -72,7 +78,7 @@ router
     failureRedirect: '/login_fail' }))
   .get('/login_success', ensureAuthenticated, function(req, res){
     if (req.session.passport.user.skill === null) {
-      res.redirect('/resister-hero');
+      res.redirect('/register-hero');
     } else {
       res.redirect('/map');
     }
