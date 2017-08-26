@@ -4,7 +4,7 @@ var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var credentials = require('./credentials');
 var hero = require('./db/hero');
-var heroModel = require('./model/heromodel');
+var db = require('./model/index');
 
 passport.serializeUser(function(user, done) {
   console.log('serialize');
@@ -12,10 +12,8 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-  //findById(id, function (err, user) {
   console.log('deserialize');
   done(null, user);
-  //});
 });
 
 passport.use(new FacebookStrategy({
@@ -37,7 +35,7 @@ passport.use(new FacebookStrategy({
       if (hero) {
         return done(null, hero);
       }
-      var results = heroModel.api.insertHero({provider_user_id: profile.id, provider: profile.provider, email: profile.emails[0].value, nickName: profile.name.givenName}, function (results) {
+      var results = db.heroModel.insertHero({provider_user_id: profile.id, provider: profile.provider, email: profile.emails[0].value, nickName: profile.name.givenName}, function (results) {
         return done(null, results);
       });
     });
@@ -47,6 +45,18 @@ passport.use(new FacebookStrategy({
 router
   .get('/', function (req, res) {
     res.render('home');
+  })
+  .get('/resister-hero', function(req, res) {
+    res.render('resister-hero', { heroInfo: req.session.passport.user});
+  })
+  .post('/resister-hero', function(req, res) {
+    console.log('req.body: '+JSON.stringify(req.body));
+    db.heroModel.updateHero(req.body, { provider_user_id: req.body.provider_user_id }, function () {
+      res.redirect('/map');
+    });
+  })
+  .get('/map', function(req, res) {
+    res.render('map');
   })
 ;
 
@@ -61,8 +71,11 @@ router
   .get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/login_success',
     failureRedirect: '/login_fail' }))
   .get('/login_success', ensureAuthenticated, function(req, res){
-    res.send(req.user);
-    // res.send(req.user);
+    if (req.session.passport.user.skill === null) {
+      res.redirect('/resister-hero');
+    } else {
+      res.redirect('/map');
+    }
   })
   .get('/logout', function(req, res){
     req.logout();
@@ -70,9 +83,7 @@ router
   });
 
 function ensureAuthenticated(req, res, next) {
-  // 로그인이 되어 있으면, 다음 파이프라인으로 진행
   if (req.isAuthenticated()) { return next(); }
-  // 로그인이 안되어 있으면, login 페이지로 진행
   res.redirect('/');
 }
 

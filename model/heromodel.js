@@ -16,11 +16,11 @@ module.exports =(function () {
       }
     },
 
-    // insertHero: function (data, success) {
-    //   hero.create({ nickName: data.nickName, email: data.email, provider_user_id: data.id, provider: data.provider, skill: 'etc', location: 1212 }).then(function (results) {
-    //     success(results);
-    //   });
-    // }
+    updateHero: function (data, conditions, success) {
+      hero.update(data, {where: conditions}).then(function (results) {
+        success(results);
+      });
+    },
 
     insertHero: function (data, success) {
       var list = [data];
