@@ -52,8 +52,13 @@
           이름: <span id="monster_name"></span>
         </p>
         <p>
-          소개: <span id="monster_desc"></span>
+          설명: <span id="monster_desc"></span>
         </p>
+        <form action="/battle" method="post">
+          <input type="hidden" class="form-control" name="heroId" value={{heroInfo.id}}>
+          <input type="hidden" class="form-control" name="monsterId" id="monsterId">
+          <input type="submit" value="전투시작">
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -87,6 +92,7 @@
     naver.maps.Event.addListener(marker, "click", function(e) {
       $('#monster_name').html('{{this.name}}')
       $('#monster_desc').html('{{this.desc}}')
+      $('#monsterId').val('{{this.id}}')
       $('#showMonsterDetailModal').modal();
     });
   {{/each}}

@@ -64,8 +64,12 @@ router
     });
   })
   .post('/register-monster', function(req, res) {
-    console.log('req.body: '+JSON.stringify(req.body));
     db.monsterModel.insertMonster(req.body, function () {
+      res.redirect('/map');
+    });
+  })
+  .post('/battle', function(req, res) {
+    db.battleModel.insertBattle(req.body, function () {
       res.redirect('/map');
     });
   })

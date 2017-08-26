@@ -24,7 +24,7 @@ var Battle = db.define('Battle', {
   },
   memo : {
     type : Sequelize.TEXT,
-    allowNull : false
+    allowNull : true
   }
 });
 

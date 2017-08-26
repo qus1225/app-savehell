@@ -14,6 +14,13 @@ module.exports =(function () {
           success(results);
         }, error);
       }
+    },
+
+    insertBattle: function (data, success) {
+      var list = [data];
+      battle.bulkCreate(list, {individualHooks: true}).then(function (results) {
+        success(results);
+      });
     }
   };
 
