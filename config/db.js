@@ -1,7 +1,8 @@
 var Sequelize = require('sequelize');
+var credential = require('../credentials')
 
-module.exports = new Sequelize('savehell', 'root', '', {
-  host: 'localhost',
+module.exports = new Sequelize('savehell', 'root', credential.DB_PASS, {
+  host: credential.HOST,
   port: 3306,
   dialect: 'mysql',
 

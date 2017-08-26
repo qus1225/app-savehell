@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(require('body-parser').urlencoded({ extended: true }));
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', credentials.PORT);
 
 // Set Handlebar ViewEngine
 var handlebars = require('express-handlebars')
