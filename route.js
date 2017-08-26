@@ -19,7 +19,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new FacebookStrategy({
     clientID: credentials.FACEBOOK_APP_ID,
     clientSecret: credentials.FACEBOOK_APP_SECRET,
-    callbackURL: 'http://localhost:8080/auth/facebook/callback',
+    callbackURL: '/auth/facebook/callback',
     passReqToCallback: true,
     profileFields: ['id', 'email', 'name']
   },
@@ -74,10 +74,6 @@ router
     });
   })
 ;
-
-router.get('/auth/facebook', passport.authenticate('facebook', {
-  authType: 'rerequest', scope: ['public_profile', 'email']
-}));
 
 router
   .get('/auth/facebook', passport.authenticate('facebook', {
