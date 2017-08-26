@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 
 var db = require('../config/db');
 
-var BattleField = db.define('BattleField', {
+var Battle = db.define('Battle', {
 
   id : {
     type : Sequelize.INTEGER(11),
@@ -28,4 +28,4 @@ var BattleField = db.define('BattleField', {
   }
 });
 
-module.exports = BattleField;
+module.exports = Battle;

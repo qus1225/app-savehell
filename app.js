@@ -13,12 +13,12 @@ var session = require('express-session');
 var db = require('./config/db');
 
 var hero = require('./db/hero');
-var battleField = require('./db/battlefield');
+var battle = require('./db/battle');
 var monster = require('./db/monster');
 var victory = require('./db/victory');
 
 hero.sync();
-battleField.sync();
+battle.sync();
 monster.sync();
 victory.sync();
 
