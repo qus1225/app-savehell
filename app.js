@@ -3,7 +3,7 @@ var express = require('express');
 var app =  express();
 
 var mysql = require('mysql');
-var dbconfig = require('./config/database');
+var dbconfig = require('./config/db');
 var connection = mysql.createConnection(dbconfig);
 
 // Set Static Middleware
