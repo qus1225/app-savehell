@@ -2,6 +2,8 @@ var express = require('express');
 
 var app =  express();
 
+var route = require('./route.js');
+
 var credentials = require('./credentials');
 
 // Set Static Middleware
@@ -27,11 +29,7 @@ app.engine('hbs', handlebars.engine);
 app.set('view engine', 'hbs');
 
 // Routes
-app
-  .get('/', function (req, res) {
-    res.render('home');
-  })
-;
+app.use('/', route);
 
 // custom 404 page
 app.use(function (req, res) {
