@@ -56,7 +56,12 @@ router
     });
   })
   .get('/map', ensureAuthenticated, function(req, res) {
-    res.render('map', { heroInfo: req.session.passport.user });
+    db.monsterModel.selectMonster(null, function (results) {
+      res.render('map', {
+        heroInfo: req.session.passport.user,
+        monsters: results
+      });
+    });
   })
   .post('/register-monster', function(req, res) {
     console.log('req.body: '+JSON.stringify(req.body));

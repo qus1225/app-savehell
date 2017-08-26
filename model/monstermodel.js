@@ -8,11 +8,11 @@ module.exports =(function () {
       if(conditions == null || conditions == undefined) {
         monster.findAll().then(function(results) {
           success(results);
-        }, error);
+        });
       } else {
-        monster.findAll({where: conditions, order: [['createdAt', 'DESC']]}).then(function(results) {
+        monster.findAll({order: [['createdAt', 'DESC']]}).then(function(results) {
           success(results);
-        }, error);
+        });
       }
     },
 

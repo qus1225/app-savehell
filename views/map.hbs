@@ -41,6 +41,7 @@
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=qVDZv9oModQgNc8sLu6Y&callback=CALLBACK_FUNCTION"></script>
 <script>
+
   var mapOptions = {
     center: new naver.maps.LatLng('{{heroInfo.locationLat}}', '{{heroInfo.locationLon}}'),
     zoom: 10,
@@ -50,20 +51,24 @@
 
   var map = new naver.maps.Map('map', mapOptions);
 
-  var markerList = [];
+  {{#each monsters}}
+    new naver.maps.Marker({
+      position: new naver.maps.LatLng('{{this.locationLat}}', '{{this.locationLon}}'),
+      map: map,
+      icon: {
+        url: '/img/monster.png'
+      }
+    });
+  {{/each}}
 
   naver.maps.Event.addListener(map, 'click', function(e) {
-    var marker = new naver.maps.Marker({
-      position: e.coord,
-      map: map
-    });
+
 
     var lat = e.coord._lat;
     var lon = e.coord._lng;
     $('#locationLat').val(lat);
     $('#locationLon').val(lon);
     $('#addMonsterModal').modal();
-
 
 //    markerList.push(marker);
 //    alert(JSON.stringify(e));
