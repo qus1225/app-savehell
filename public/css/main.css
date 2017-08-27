@@ -105,6 +105,17 @@ img.pull-left { margin-right: 10px; }
 	.widget-simplenav a{ margin:0 5px; }
 
 .map-container {
+	position: relative;
+}
 
+.map-container .board {
+	position: absolute;
+	right: 0;
+	z-index: 9999;
+	background-image: url('/img/background-map.jpg');
+	color: #fff;
+	border-radius: 4px;
+	padding: 19px;
+	font-weight: bold
 }
 
