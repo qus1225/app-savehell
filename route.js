@@ -35,7 +35,7 @@ passport.use(new FacebookStrategy({
       if (hero) {
         return done(null, hero);
       }
-      var results = db.heroModel.insertHero({provider_user_id: profile.id, provider: profile.provider, email: profile.emails[0].value, nickName: profile.name.givenName}, function (results) {
+      db.heroModel.insertHero({provider_user_id: profile.id, provider: profile.provider, email: profile.emails[0].value, nickName: profile.name.givenName}, function (results) {
         return done(null, results);
       });
     });

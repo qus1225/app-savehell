@@ -29,10 +29,7 @@ body {
 		#head .btn-default:active, 
 		#head .btn-default.active { color:#fff; -webkit-box-shadow:inset 0px 0px 0px 3px #fff; -moz-box-shadow:inset 0px 0px 0px 3px #fff; box-shadow:inset 0px 0px 0px 3px #fff; background: transparent; }
 
-@media (max-width: 767px) {
-	#head { min-height:420px; padding-top:160px; }
-	#head .lead { font-size: 34px; }
-}
+
 
 
 /* Autohide navbar */
@@ -111,7 +108,7 @@ img.pull-left { margin-right: 10px; }
 .map-container .board {
 	position: absolute;
 	right: 0;
-	z-index: 9999;
+	z-index: 2;
 	background-image: url('/img/background-map.jpg');
 	color: #fff;
 	border-radius: 4px;
@@ -119,3 +116,26 @@ img.pull-left { margin-right: 10px; }
 	font-weight: bold
 }
 
+@media (max-width: 767px) {
+	#head {
+		min-height: 480px;
+		padding-top: 60px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	#head .lead {
+		font-size: 30px;
+	}
+	#head .tagline {
+		font-size: 14px;
+	}
+	#head .btn {
+		font-size: 12px;
+	}
+	.map-container .board {
+		font-size: 10px;
+		padding: 8px;
+		font-weight: normal;
+	}
+
+}
