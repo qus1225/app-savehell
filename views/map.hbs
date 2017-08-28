@@ -22,28 +22,28 @@
           <input type="hidden" class="form-control" name="locationLat" id="locationLat">
           <input type="hidden" class="form-control" name="locationLon" id="locationLon">
           <!--<input type="hidden" name="provider_user_id" value= {{heroInfo.provider_user_id}}>-->
-          <div class="form-group">
+          <div class="form-group row">
             <label for="name" class="col-sm-4 control-label">괴물 이름</label>
             <div class="col-sm-6">
               <input type="text" class="form-control" id="name" name="name">
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group row">
             <label for="desc" class="col-sm-4 control-label">괴물 설명</label>
             <div class="col-sm-6">
               <textarea class="form-control" id="desc" name="desc"></textarea>
             </div>
           </div>
-          <input type="submit" value="괴물 등록">
+          <div class="modal-footer">
+            <input type="submit"  class="btn btn-danger pull-left" value="괴물 등록">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+
     </div>
   </div>
 </div>
-
 
 <div class="modal fade" id="showMonsterDetailModal" tabindex="-1" role="dialog" aria-labelledby="showMonsterDetailModalLabel">
   <div class="modal-dialog" role="document">
