@@ -82,7 +82,7 @@ router
   .get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/login_success',
     failureRedirect: '/login_fail' }))
   .get('/login_success', ensureAuthenticated, function(req, res){
-    if (req.session.passport.user.skill === null) {
+    if (req.session.passport.user.skill == null) {
       res.redirect('/register-hero');
     } else {
       res.redirect('/map');
