@@ -36,7 +36,7 @@ passport.use(new FacebookStrategy({
         return done(null, hero);
       }
       db.heroModel.insertHero({provider_user_id: profile.id, provider: profile.provider, email: profile.emails[0].value, nickName: profile.name.givenName}, function (results) {
-        return done(null, results);
+        return done(null, results[0]);
       });
     });
   }
@@ -50,7 +50,6 @@ router
     res.render('register-hero', { heroInfo: req.session.passport.user });
   })
   .post('/register-hero', function(req, res) {
-    console.log('req.body: '+JSON.stringify(req.body));
     db.heroModel.updateHero(req.body, { provider_user_id: req.body.provider_user_id }, function () {
       res.redirect('/map');
     });
