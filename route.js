@@ -24,12 +24,6 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'email', 'name']
   },
   function(req, accessToken, refreshToken, profile, done) {
-    console.log('email: '+ profile.emails[0].value);
-    console.log('provider: '+ profile.provider);
-    console.log('name: '+ profile.name.givenName);
-
-    // return done(null, profile);
-
     hero.findOne({ where: {provider_user_id: profile.id, provider: profile.provider} }).then(hero => {
       // project will be the first entry of the Projects table with the title 'aProject' || null
       if (hero) {
@@ -51,7 +45,8 @@ router
   })
   .post('/register-hero', function(req, res) {
     db.heroModel.updateHero(req.body, { provider_user_id: req.body.provider_user_id }, function () {
-      res.redirect('/map');
+      req.logout();
+      res.redirect('/auth/facebook');
     });
   })
   .get('/map', ensureAuthenticated, function(req, res) {
