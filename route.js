@@ -38,7 +38,11 @@ passport.use(new FacebookStrategy({
 
 router
   .get('/', function (req, res) {
-    res.render('home');
+    if (req.session.passport != undefined) {
+      res.render('home', { heroInfo: req.session.passport.user });
+    } else {
+      res.render('home');
+    }
   })
   .get('/register-hero', function(req, res) {
     res.render('register-hero', { heroInfo: req.session.passport.user });
