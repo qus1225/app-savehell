@@ -99,9 +99,9 @@
     });
 
     naver.maps.Event.addListener(marker, "click", function(e) {
-      $('#monster_name').html('{{this.name}}')
-      $('#monster_desc').html('{{this.desc}}')
-      $('#monsterId').val('{{this.id}}')
+      $('#monster_name').html('{{this.name}}');
+      $('#monsterId').val('{{this.id}}');
+      $('#monster_desc').html('{{{this.desc}}}');
       $('#showMonsterDetailModal').modal();
     });
   {{/each}}

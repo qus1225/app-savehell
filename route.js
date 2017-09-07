@@ -62,6 +62,7 @@ router
     });
   })
   .post('/register-monster', function(req, res) {
+    req.body.desc = req.body.desc.replace(/(?:\r\n|\r|\n)/g, '<br />');
     db.monsterModel.insertMonster(req.body, function () {
       res.redirect('/map');
     });
